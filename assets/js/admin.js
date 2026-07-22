@@ -97,13 +97,13 @@
   }
 
   async function load() {
-    el.tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem"><span class="spinner dark"></span></td></tr>';
+    el.tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem"><span class="spinner dark"></span></td></tr>';
     const { data, error } = await window.sb
       .from("v_admin_rsvps")
       .select("*")
       .order("full_name", { ascending: true });
     if (error) {
-      el.tbody.innerHTML = '<tr><td colspan="8" style="padding:1.5rem;color:#8a4b2e">Error loading data: ' + error.message + '</td></tr>';
+      el.tbody.innerHTML = '<tr><td colspan="9" style="padding:1.5rem;color:#8a4b2e">Error loading data: ' + error.message + '</td></tr>';
       return;
     }
     rows = data || [];
@@ -140,7 +140,7 @@
     let out = rows.filter((r) => {
       if (st !== "all" && r.status !== st) return false;
       if (!q) return true;
-      return [r.full_name, r.email, r.phone, r.message, r.dietary, r.plus_one_name, r.children_names]
+      return [r.full_name, r.side, r.email, r.phone, r.message, r.dietary, r.plus_one_name, r.children_names]
         .some((v) => v && String(v).toLowerCase().includes(q));
     });
     out.sort((a, b) => {
@@ -155,12 +155,13 @@
     const data = filtered();
     el.rowCount.textContent = data.length + " of " + rows.length + " responses";
     if (!data.length) {
-      el.tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--muted)">No matching responses yet.</td></tr>';
+      el.tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--muted)">No matching responses yet.</td></tr>';
       return;
     }
     el.tbody.innerHTML = data.map((r) =>
       "<tr>" +
       "<td><strong>" + esc(r.full_name) + "</strong></td>" +
+      "<td>" + (r.side ? esc(r.side) : "—") + "</td>" +
       "<td><span class='badge " + r.status + "'>" + r.status + "</span></td>" +
       "<td>" + (r.plus_one ? "Yes" + (r.plus_one_name ? "<br><span class='r-sub'>" + esc(r.plus_one_name) + "</span>" : "") : "—") + "</td>" +
       "<td>" + (r.children || 0) + (r.children_names ? "<br><span class='r-sub'>" + esc(r.children_names) + "</span>" : "") + "</td>" +
@@ -173,7 +174,7 @@
   }
 
   function exportCSV() {
-    const cols = ["full_name","status","plus_one","plus_one_name","children","children_names",
+    const cols = ["full_name","side","status","plus_one","plus_one_name","children","children_names",
                   "dietary","message","phone","email","updated_at"];
     const head = cols.join(",");
     const body = filtered().map((r) => cols.map((c) => csvCell(r[c])).join(",")).join("\n");

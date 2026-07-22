@@ -14,6 +14,7 @@
     formStep: $("#formStep"),
     rsvpForm: $("#rsvpForm"),
     fullName: $("#fullName"),
+    side: $("#side"),
     choiceAccept: $("#choiceAccept"),
     choiceDecline: $("#choiceDecline"),
     attendingBlock: $("#attendingBlock"),
@@ -112,6 +113,7 @@
       const payload = {
         p_full_name: el.fullName.value,
         p_status: status,
+        p_side: el.side.value,
         p_plus_one: status === "accepted" && el.plusOne.checked,
         p_plus_one_name: el.plusOneName.value,
         p_children: bringingKids ? (+el.children.value || 0) : 0,
