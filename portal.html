@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guest Portal · Phong &amp; Nhu</title>
+<meta name="description" content="Everything you need for the wedding day — itinerary, calendar, dress code, parking, and FAQ.">
+<link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+<meta property="og:title" content="Guest Portal · Phong & Nhu">
+<meta property="og:image" content="./assets/img/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;500;600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./index.html"><b>Phong</b> <span class="amp">&amp;</span> <b>Nhu</b></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./story.html">Our Story</a></li>
+        <li><a href="./details.html">Details</a></li>
+        <li><a href="./portal.html" class="active">Guest Portal</a></li>
+        <li><a class="btn btn-gold nav-cta" href="./rsvp.html">RSVP</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <img src="./assets/img/couple-seated.jpg" alt="Phong and Nhu">
+  <div class="wrap">
+    <p class="eyebrow">For Our Guests</p>
+    <h1>Guest Portal</h1>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="bg-ivory">
+  <div class="narrow center" data-reveal>
+    <p class="eyebrow">Save the Date</p>
+    <h2 class="section-title">Add us to your calendar</h2>
+    <div class="divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12h20M12 2v20"/></svg></div>
+    <p class="lede">One tap and we're on your schedule — with a reminder the day before.</p>
+    <div class="hero-cta" style="margin-top:1.6rem">
+      <button class="btn btn-primary" onclick="downloadICS()">Download .ics</button>
+      <a class="btn btn-outline" id="gcalLink" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="bg-ivory-2">
+  <div class="wrap" style="max-width:860px">
+    <div class="center" data-reveal>
+      <p class="eyebrow">The Day</p>
+      <h2 class="section-title">Your Itinerary</h2>
+    </div>
+    <div class="timeline" id="itinerary" data-reveal></div>
+  </div>
+</section>
+
+<!-- DRESS + PARKING -->
+<section class="bg-champ">
+  <div class="wrap">
+    <div class="grid grid-2">
+      <div class="card pad-lg" data-reveal>
+        <div class="feature">
+          <div class="f-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2l6 4 6-4v6l-6 4-6-4V2Z"/><path d="M6 12v8h12v-8"/></svg></div>
+          <h3>Dress Code</h3>
+        </div>
+        <p style="text-align:center"><strong>Elegant / Professional.</strong></p>
+        <p class="muted" style="text-align:center">Think refined and celebratory — suits, cocktail dresses, and polished attire. Soft greens, champagne, and ivory tones complement the day beautifully, though you're welcome in any color that makes you feel your best. Comfortable dress shoes are wise for a day with a few stops.</p>
+      </div>
+      <div class="card pad-lg" data-reveal data-delay="1">
+        <div class="feature">
+          <div class="f-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div>
+          <h3>Parking</h3>
+        </div>
+        <p class="muted" style="text-align:center">Complimentary parking is available at each location. Canton House offers a large lot on-site for the evening reception. For the morning tea ceremonies, please use street parking or driveways as directed by family. Carpooling between the homes is encouraged — it's a short, easy drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-ivory">
+  <div class="narrow">
+    <div class="center" data-reveal>
+      <p class="eyebrow">Good to Know</p>
+      <h2 class="section-title">Frequently Asked</h2>
+      <div class="divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12h20"/></svg></div>
+    </div>
+    <div data-reveal>
+      <div class="faq-item"><button class="faq-q">What time should I arrive?</button><div class="faq-a"><p>If you're invited to the tea ceremonies, please arrive a few minutes before the listed start time. For the reception, doors open at 6:00 PM — come anytime after and settle in before dinner.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I bring a guest or my children?</button><div class="faq-a"><p>Your invitation and RSVP will show exactly how many seats and whether a plus-one is included for your party. If anything looks off, reach out and we'll happily sort it out.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Do I need to attend every event?</button><div class="faq-a"><p>Not at all. The tea ceremonies are intimate family moments — attend the ones you're invited to. The reception at 6:00 PM is the main celebration for everyone.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What should I do during the free time?</button><div class="faq-a"><p>From noon to 5:00 PM you're free to relax at the groom's house or head home to rest and change before the reception. It's the perfect window to recharge.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Are there dietary options?</button><div class="faq-a"><p>Yes. Let us know your dietary needs in your RSVP and we'll make sure you're taken care of at the reception.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I change my RSVP later?</button><div class="faq-a"><p>Absolutely. Return to the <a href="./rsvp.html">RSVP page</a>, look yourself up by name or code, and update your response anytime before the big day.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Is the venue accessible?</button><div class="faq-a"><p>Canton House is accessible for the reception. If you have specific accessibility needs for any part of the day, note it in your RSVP message and we'll assist.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="f-names">Phong <span class="amp">&amp;</span> Nhu</p>
+    <p class="f-date">December 20, 2026 · Duluth, Georgia</p>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./story.html">Our Story</a>
+      <a href="./details.html">Details</a>
+      <a href="./rsvp.html">RSVP</a>
+      <a href="./portal.html">Guest Portal</a>
+      <a href="./admin.html">Admin</a>
+    </nav>
+    <small>Made with love for our greatest journey · &copy; <span id="year"></span></small>
+  </div>
+</footer>
+
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/ics.js"></script>
+<script src="./assets/js/main.js"></script>
+<script>
+  (function () {
+    var W = window.WEDDING || {};
+    var g = document.getElementById("gcalLink");
+    if (g && window.googleCalUrl) g.href = window.googleCalUrl();
+
+    var host = document.getElementById("itinerary");
+    if (host && W.schedule) {
+      host.innerHTML = W.schedule.map(function (e) {
+        var addr = e.address ? '<p class="tl-place">' + e.address + '</p>' : '';
+        var note = e.note ? '<p>' + e.note + '</p>' : '';
+        var map = e.maps ? '<a class="maplink" href="' + e.maps + '" target="_blank" rel="noopener">Directions →</a>' : '';
+        return '<div class="tl-item"><div class="tl-dot"></div>' +
+               '<span class="tl-time">' + e.time + '</span>' +
+               '<h3 class="tl-title">' + e.title + '</h3>' + addr + note + map + '</div>';
+      }).join("");
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+-- ============================================================
+--  No seeding required.
+--
+--  This site uses an OPEN RSVP model: guests simply enter their
+--  name on the RSVP page, so there is no guest list to import.
+--  Just run db/schema.sql once and you're done.
+--
+--  (This file is intentionally left as a note. You can delete it.)
+-- ============================================================

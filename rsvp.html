@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP · Phong &amp; Nhu</title>
+<meta name="description" content="Respond to the wedding of Phong & Nhu. Let us know if you can join us on December 20, 2026.">
+<link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+<meta property="og:title" content="RSVP · Phong & Nhu">
+<meta property="og:image" content="./assets/img/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;500;600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./index.html"><b>Phong</b> <span class="amp">&amp;</span> <b>Nhu</b></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./story.html">Our Story</a></li>
+        <li><a href="./details.html">Details</a></li>
+        <li><a href="./portal.html">Guest Portal</a></li>
+        <li><a class="btn btn-gold nav-cta active" href="./rsvp.html">RSVP</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero" style="min-height:42vh">
+  <img src="./assets/img/couple-forehead.jpg" alt="Phong and Nhu">
+  <div class="wrap">
+    <p class="eyebrow">Kindly Respond</p>
+    <h1>RSVP</h1>
+  </div>
+</section>
+
+<section class="bg-ivory">
+  <div class="narrow">
+
+    <!-- Not configured notice -->
+    <div id="notConfigured" class="card pad-lg hidden">
+      <p class="eyebrow">Almost Ready</p>
+      <h2 style="font-family:var(--serif)">RSVP is being set up</h2>
+      <p class="muted">The online RSVP will be available shortly. In the meantime, please reach out to the couple directly. <br><span style="font-size:.85rem">(Site owner: add your Supabase URL and anon key in <code>assets/js/config.js</code> to enable this page.)</span></p>
+    </div>
+
+    <div id="rsvpApp">
+
+      <!-- FORM -->
+      <div id="formStep" class="card pad-lg">
+        <div class="center">
+          <p class="eyebrow">We Hope You'll Join Us</p>
+          <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem)">Will you join us?</h2>
+          <p class="muted" style="max-width:46ch;margin:.5rem auto 1.6rem">Tell us who you are and whether you'll be celebrating with us. Changed your mind or made a typo? Just submit again with the same name and we'll update it.</p>
+        </div>
+
+        <form id="rsvpForm" novalidate>
+          <div class="field">
+            <label for="fullName">Your Full Name</label>
+            <input class="input" id="fullName" type="text" autocomplete="name" placeholder="First and last name" required>
+            <p class="hint">Please use the same name each time so we can keep your response up to date.</p>
+          </div>
+
+          <!-- accept / decline -->
+          <div class="choice-grid">
+            <label class="choice sel-accept">
+              <input type="radio" name="status" id="choiceAccept" value="accepted">
+              <div class="c-icon">✦</div>
+              <div class="c-title">Joyfully Accept</div>
+            </label>
+            <label class="choice sel-decline">
+              <input type="radio" name="status" id="choiceDecline" value="declined">
+              <div class="c-icon">✦</div>
+              <div class="c-title">Regretfully Decline</div>
+            </label>
+          </div>
+
+          <div id="attendingBlock" class="hidden">
+            <!-- plus one -->
+            <div class="field">
+              <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer">
+                <input type="checkbox" id="plusOne" style="width:auto"> I'm bringing a plus one
+              </label>
+              <div class="hidden" id="plusOneNameBlock" style="margin-top:.8rem">
+                <input class="input" id="plusOneName" type="text" placeholder="Plus one's full name">
+              </div>
+            </div>
+
+            <!-- children -->
+            <div class="field">
+              <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer">
+                <input type="checkbox" id="bringKids" style="width:auto"> I'm bringing children
+              </label>
+              <div class="hidden" id="childrenBlock" style="margin-top:.8rem">
+                <label for="children">How many children</label>
+                <div class="stepper">
+                  <button type="button" data-step="-">−</button>
+                  <input id="children" type="number" min="0" max="10" value="1" readonly>
+                  <button type="button" data-step="+">+</button>
+                </div>
+                <div style="margin-top:.8rem">
+                  <input class="input" id="childrenNames" type="text" placeholder="Children's names (comma separated)">
+                  <p class="hint">e.g. Mia, Ethan</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="dietary">Dietary Restrictions</label>
+              <input class="input" id="dietary" type="text" placeholder="Vegetarian, allergies, etc.">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">A Note to the Couple</label>
+            <textarea class="textarea" id="message" placeholder="Share your well wishes or anything we should know…"></textarea>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input class="input" id="phone" type="tel" placeholder="(optional)">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input class="input" id="email" type="email" placeholder="(optional)">
+            </div>
+          </div>
+
+          <div id="formMsg" class="hidden"></div>
+
+          <button class="btn btn-primary btn-block" id="saveBtn" type="submit">Submit RSVP</button>
+        </form>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="successStep" class="card pad-lg hidden center">
+        <div class="stamp-badge" style="position:static;margin:0 auto 1.4rem;transform:rotate(-8deg);border-color:var(--gold);color:var(--gold)">RSVP<br>Received</div>
+        <h2 id="successTitle" style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem)">Thank you!</h2>
+        <p id="successText" class="muted" style="max-width:48ch;margin:1rem auto 1.6rem"></p>
+        <div class="hero-cta">
+          <button class="btn btn-outline" id="editBtn">Edit My RSVP</button>
+          <a class="btn btn-gold" href="./portal.html">Open Guest Portal</a>
+        </div>
+      </div>
+
+    </div><!-- /rsvpApp -->
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="f-names">Phong <span class="amp">&amp;</span> Nhu</p>
+    <p class="f-date">December 20, 2026 · Duluth, Georgia</p>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./story.html">Our Story</a>
+      <a href="./details.html">Details</a>
+      <a href="./rsvp.html">RSVP</a>
+      <a href="./portal.html">Guest Portal</a>
+      <a href="./admin.html">Admin</a>
+    </nav>
+    <small>Made with love for our greatest journey · &copy; <span id="year"></span></small>
+  </div>
+</footer>
+
+<script src="./assets/js/config.js"></script>
+<script type="module" src="./assets/js/supabase-client.js"></script>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/rsvp.js"></script>
+</body>
+</html>

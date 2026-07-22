@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Phong &amp; Nhu</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+
+<!-- Not configured -->
+<div id="notConfigured" class="gate hidden">
+  <div class="card">
+    <p class="eyebrow">Setup Needed</p>
+    <h2 style="font-family:var(--serif)">Admin not configured</h2>
+    <p class="muted">Add your Supabase URL and anon key in <code>assets/js/config.js</code>, run <code>db/schema.sql</code>, and create an admin user in Supabase → Authentication.</p>
+    <a class="btn btn-outline" href="./index.html" style="margin-top:1rem">← Back to site</a>
+  </div>
+</div>
+
+<!-- LOGIN GATE -->
+<div id="gate" class="gate hidden">
+  <div class="card">
+    <div class="center" style="margin-bottom:1.4rem">
+      <a class="brand" href="./index.html" style="justify-content:center"><b>Phong</b> <span class="amp">&amp;</span> <b>Nhu</b></a>
+      <p class="eyebrow" style="margin-top:1rem">Private</p>
+      <h2 style="font-family:var(--serif);font-size:1.8rem">Admin Sign In</h2>
+    </div>
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label for="adminEmail">Email</label>
+        <input class="input" id="adminEmail" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="adminPassword">Password</label>
+        <input class="input" id="adminPassword" type="password" autocomplete="current-password" required>
+      </div>
+      <div id="loginMsg" class="hidden"></div>
+      <button class="btn btn-primary btn-block" id="loginBtn" type="submit">Sign In</button>
+    </form>
+    <p class="hint center" style="margin-top:1rem">Accounts are created in your Supabase dashboard.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="hidden">
+  <header class="nav scrolled" style="position:sticky">
+    <div class="wrap">
+      <a class="brand" href="./index.html"><b>Phong</b> <span class="amp">&amp;</span> <b>Nhu</b> <span style="font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;color:var(--gold);margin-left:.5rem">ADMIN</span></a>
+      <div style="display:flex;gap:.6rem">
+        <button class="btn btn-outline" id="refreshBtn" style="padding:.6em 1.2em">Refresh</button>
+        <button class="btn btn-primary" id="logoutBtn" style="padding:.6em 1.2em">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="max-width:1300px;padding-block:2.5rem">
+    <p class="eyebrow">Guest Management</p>
+    <h1 style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.6rem">RSVP Dashboard</h1>
+
+    <!-- STATS -->
+    <div class="stat-grid">
+      <div class="stat"><div class="s-num" id="stAccepted">0</div><div class="s-label">Accepted</div></div>
+      <div class="stat"><div class="s-num" id="stDeclined">0</div><div class="s-label">Declined</div></div>
+      <div class="stat"><div class="s-num" id="stTotal">0</div><div class="s-label">Total RSVPs</div></div>
+      <div class="stat"><div class="s-num" id="stGuests">0</div><div class="s-label">Total Guests</div></div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><div class="s-num" id="stAdults">0</div><div class="s-label">Adults</div></div>
+      <div class="stat"><div class="s-num" id="stChildren">0</div><div class="s-label">Children</div></div>
+      <div class="stat"><div class="s-num" id="stPlusOnes">0</div><div class="s-label">Plus Ones</div></div>
+      <div class="stat"><div class="s-num" id="stDietary">0</div><div class="s-label">Dietary Notes</div></div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <input class="input" id="adminSearch" type="search" placeholder="Search name, code, email, note…" style="min-width:240px;flex:1">
+      <select class="select" id="filterStatus">
+        <option value="all">All statuses</option>
+        <option value="accepted">Accepted</option>
+        <option value="declined">Declined</option>
+      </select>
+      <button class="btn btn-gold" id="exportBtn">Export CSV</button>
+      <span class="muted" id="rowCount" style="font-size:.8rem;margin-left:auto"></span>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th data-key="full_name">Name ▲▼</th>
+            <th data-key="status">Status</th>
+            <th data-key="plus_one">Plus One</th>
+            <th data-key="children">Children</th>
+            <th data-key="dietary">Dietary</th>
+            <th data-key="message">Message</th>
+            <th data-key="email">Contact</th>
+            <th data-key="updated_at">Updated</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="hint" style="margin-top:1rem">Tip: click a column header to sort. Export respects your current search &amp; filter.</p>
+  </main>
+</div>
+
+<script src="./assets/js/config.js"></script>
+<script type="module" src="./assets/js/supabase-client.js"></script>
+<script src="./assets/js/admin.js"></script>
+</body>
+</html>
