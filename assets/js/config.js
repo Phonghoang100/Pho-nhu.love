@@ -29,8 +29,8 @@ window.WEDDING = {
   /* ---- Supabase ---- */
   // 1) Create a project at https://supabase.com
   // 2) Settings → API → copy the Project URL and the "anon public" key
-  supabaseUrl: "https://YOUR-PROJECT-ref.supabase.co",
-  supabaseAnonKey: "YOUR-ANON-PUBLIC-KEY",
+  supabaseUrl: "https://gwdpzgzjxsatzccbhfxz.supabase.co/rest/v1/",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3ZHB6Z3pqeHNhdHpjY2JoZnh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2NzkyMjgsImV4cCI6MjEwMDI1NTIyOH0.EWCCcxYqW_cEke6CC24FrBD53n0OLbEOQsJ8-CLS5jY",
 
   /* ---- Schedule (day-of timeline) ---- */
   schedule: [
